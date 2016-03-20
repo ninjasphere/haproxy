@@ -9,9 +9,10 @@ FROM ubuntu:14.04.2
 
 # Install Haproxy.
 RUN \
-  sed -i 's/^# \(.*-backports\s\)/\1/g' /etc/apt/sources.list && \
+  echo deb http://archive.ubuntu.com/ubuntu trusty-backports main universe | \
+      tee /etc/apt/sources.list.d/backports.list && \
   apt-get update && \
-  apt-get install -y haproxy=1.5.3-1~ubuntu14.04.1 && \
+  apt-get install -y haproxy -t trusty-backports && \
   sed -i 's/^ENABLED=.*/ENABLED=1/' /etc/default/haproxy && \
   rm -rf /var/lib/apt/lists/*
 
