@@ -6,6 +6,7 @@ all: build
 
 build:
 	docker ${DOCKER_ARGS} build -t "ninjablocks/${PROJECT}:${SHA1}" .
+	echo "build...ninjablocks/${PROJECT}:${SHA1}"
 
 push:
 	docker push "ninjablocks/${PROJECT}:${SHA1}"
